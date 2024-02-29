@@ -69,6 +69,11 @@
         #endregion
 
         /// <summary>
+        /// Gets whether the CEF runtime has been initialized;
+        /// </summary>
+        public static bool IsInitialized => _initialized;
+
+        /// <summary>
         /// Loads CEF runtime.
         /// </summary>
         /// <exception cref="DllNotFoundException"></exception>
@@ -313,16 +318,6 @@
             libcef.set_osmodal_loop(osModalLoop ? 1 : 0);
         }
 
-        /// <summary>
-        /// Call during process startup to enable High-DPI support on Windows 7 or
-        /// newer. Older versions of Windows should be left DPI-unaware because they do
-        /// not support DirectWrite and GDI fonts are kerned very badly.
-        /// </summary>
-        public static void EnableHighDpiSupport()
-        {
-            libcef.enable_highdpi_support();
-        }
-
         #endregion
 
         #region cef_task
@@ -388,7 +383,7 @@
         /// the same-origin policy. Scripts hosted underneath the fully qualified
         /// |source_origin| URL (like http://www.example.com) will be allowed access to
         /// all resources hosted on the specified |target_protocol| and |target_domain|.
-        /// If |target_domain| is non-empty and |allow_target_subdomains| if false only
+        /// If |target_domain| is non-empty and |allow_target_subdomains| is false only
         /// exact domain matches will be allowed. If |target_domain| contains a top-
         /// level domain component (like "example.com") and |allow_target_subdomains| is
         /// true sub-domain matches will be allowed. If |target_domain| is empty and
