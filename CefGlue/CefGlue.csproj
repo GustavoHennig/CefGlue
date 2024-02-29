@@ -15,8 +15,8 @@
 		<AssemblyOriginatorKeyFile>PlagiusInstallerSelfSigned3-nopass.snk</AssemblyOriginatorKeyFile>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageOutputPath>P:\Dev\MyNuget</PackageOutputPath>
-		<PackageId>GHSoftware.CefGlue</PackageId>
-		<Product>GHSoftware CefGlue</Product>
+		<PackageId>GHSoftware.CefGlue109</PackageId>
+		<Product>GHSoftware CefGlue 109</Product>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
