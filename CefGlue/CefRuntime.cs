@@ -158,7 +158,7 @@
             if (string.Compare(actual, expected, StringComparison.OrdinalIgnoreCase) != 0)
             {
                 var expectedVersion = libcef.CEF_VERSION;
-               // throw ExceptionBuilder.RuntimeVersionApiHashMismatch(actual, expected, expectedVersion);
+                throw ExceptionBuilder.RuntimeVersionApiHashMismatch(actual, expected, expectedVersion);
             }
         }
 
