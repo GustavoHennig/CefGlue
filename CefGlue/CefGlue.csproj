@@ -178,6 +178,7 @@
 		<Compile Include="Enums\CefDomDocumentType.cs" />
 		<Compile Include="Enums\CefDomEventCategory.cs" />
 		<Compile Include="Enums\CefDomEventPhase.cs" />
+		<Compile Include="Enums\CefDomFormControlType.cs" />
 		<Compile Include="Enums\CefDomNodeType.cs" />
     <Compile Include="Enums\CefDownloadInterruptReason.cs" />
 		<Compile Include="Enums\CefDragOperationsMask.cs" />
@@ -241,6 +242,7 @@
 		<Compile Include="Enums\CefWindowOpenDisposition.cs" />
 		<Compile Include="Enums\CefXmlEncodingType.cs" />
 		<Compile Include="Enums\CefXmlNodeType.cs" />
+		<Compile Include="Enums\CefZoomCommand.cs" />
 		<Compile Include="ExceptionBuilder.cs" />
 		<Compile Include="Exceptions\CefRuntimeException.cs" />
 		<Compile Include="Exceptions\CefVersionMismatchException.cs" />
