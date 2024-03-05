@@ -191,14 +191,6 @@
         public CefLogSeverity LogSeverity { get; set; }
 
         /// <summary>
-        /// The log items prepended to each log line. If not set the default log items
-        /// will be used. Also configurable using the "log-items" command-line switch
-        /// with a value of "none" for no log items, or a comma-delimited list of
-        /// values "pid", "tid", "timestamp" or "tickcount" for custom log items.
-        /// </summary>
-        public CefLogItems LogItems { get; set; }
-
-        /// <summary>
         /// Custom flags that will be used when initializing the V8 JavaScript engine.
         /// The consequences of using custom flags may not be well tested. Also
         /// configurable using the "js-flags" command-line switch.
@@ -290,6 +282,30 @@
 
         public bool CookieableSchemesExcludeDefaults { get; set; }
 
+        /// <summary>
+        /// Specify an ID to enable Chrome policy management via Platform and OS-user
+        /// policies. On Windows, this is a registry key like
+        /// "SOFTWARE\\Policies\\Google\\Chrome". On MacOS, this is a bundle ID like
+        /// "com.google.Chrome". On Linux, this is an absolute directory path like
+        /// "/etc/opt/chrome/policies". Only supported with the Chrome runtime. See
+        /// https://support.google.com/chrome/a/answer/9037717 for details.
+        ///
+        /// Chrome Browser Cloud Management integration, when enabled via the
+        /// "enable-chrome-browser-cloud-management" command-line flag, will also use
+        /// the specified ID. See https://support.google.com/chrome/a/answer/9116814
+        /// for details.
+        /// </summary>
+        public string ChromePolicyId { get; set; }
+
+        /// <summary>
+        /// Specify an ID for an ICON resource that can be loaded from the main
+        /// executable and used when creating default Chrome windows such as DevTools
+        /// and Task Manager. If unspecified the default Chromium ICON (IDR_MAINFRAME
+        /// [101]) will be loaded from libcef.dll. Only supported with the Chrome
+        /// runtime on Windows.
+        /// </summary>
+        public int ChromeAppIconId { get; set; }
+
         internal cef_settings_t* ToNative()
         {
             var ptr = cef_settings_t.Alloc();
@@ -311,7 +327,6 @@
             cef_string_t.Copy(Locale, &ptr->locale);
             cef_string_t.Copy(LogFile, &ptr->log_file);
             ptr->log_severity = LogSeverity;
-            ptr->log_items = LogItems;
             cef_string_t.Copy(JavaScriptFlags, &ptr->javascript_flags);
             cef_string_t.Copy(ResourcesDirPath, &ptr->resources_dir_path);
             cef_string_t.Copy(LocalesDirPath, &ptr->locales_dir_path);
@@ -322,6 +337,8 @@
             cef_string_t.Copy(AcceptLanguageList, &ptr->accept_language_list);
             cef_string_t.Copy(CookieableSchemesList, &ptr->cookieable_schemes_list);
             ptr->cookieable_schemes_exclude_defaults = CookieableSchemesExcludeDefaults ? 1 : 0;
+            cef_string_t.Copy(ChromePolicyId, &ptr->chrome_policy_id);
+            ptr->chrome_app_icon_id = ChromeAppIconId;
             return ptr;
         }
 
